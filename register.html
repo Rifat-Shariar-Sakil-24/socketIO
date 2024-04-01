@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="form" >
+        <input type="text" name="username" id="username">
+        <input type="text" name="password" id="password">
+        <button >register</button>
+
+    </form>
+
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        
+      
+        var messages = document.getElementById('users');
+        var form = document.getElementById('form');
+        var username = document.getElementById('username');
+        var password = document.getElementById('password');
+      
+        form.addEventListener('submit', function(e) {
+          e.preventDefault();
+          if (username.value && password.value) {
+            var socket = io();
+            socket.emit('register', username.value,password.value);
+            username.value = '';
+            password.value = '';
+          }
+        });
+      
+        // socket.on('chat message', function(msg, socketID) {
+        //   var item = document.createElement('li');
+        //   item.textContent = socketID + ": " + msg;
+        //   messages.appendChild(item);
+        //   window.scrollTo(0, document.body.scrollHeight);
+        // });
+      
+        // socket.on('chat entry', function(msg) {
+        //   var item = document.createElement('li');
+        //   item.textContent = msg; 
+        //   messages.appendChild(item);
+        //   window.scrollTo(0, document.body.scrollHeight);
+        // });
+      </script>
+</body>
+</html>
